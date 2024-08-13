@@ -11,3 +11,27 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	ft_btoa(int sig)
+{
+
+}
+
+int	main(int argc, char **argv)
+{
+	int	pid;
+
+	if (argc != 1)
+	{
+		ft_printf("Error\nNo arguments needed\n");
+		return (-1);
+	}
+	pid = getpid();
+	ft_printf("PID: %d\n", pid);
+	while (1)
+	{
+		signal(SIGUSR1, ft_btoa);
+		signal(SIGUSR2, ft_btoa);
+	}
+	return (0);
+}

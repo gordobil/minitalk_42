@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngordobi <ngordobi@student.42urduliz.com   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 13:12:11 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/08/13 13:12:11 by ngordobi         ###   ########.fr       */
+/*   Created: 2024/08/13 14:15:31 by ngordobi          #+#    #+#             */
+/*   Updated: 2024/08/13 14:15:31 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
-void	ft_atob(int pid, char c)
+int	ft_atoi(const char *str)
 {
-
-}
-
-int	main(int argc, char **argv)
-{
-	int	pid;
+	int	result;
+	int	sign;
 	int	i;
 
-	if (argc != 3)
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-')
 	{
-		ft_printf("Error\nInvalid arguments\n");
-		return (-1);
-	}
-	pid = ft_atoi(argv[1]);
-	while (argv[2][i] != '\0')
-	{
-		ft_atob(pid, argv[2][i]);
+		sign = -1;
 		i++;
 	}
-	return (0);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }

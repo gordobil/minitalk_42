@@ -16,21 +16,21 @@ NAME_C				=	client
 CC					=	gcc
 CC_FLAGS			=	-Wall -Wextra -Werror
 
-FT_PRINTF			=	./ft_printf/
+UTILS				=	./utils/
 
 SOURCES_S			=	server.c \
 SOURCES_C			=	client.c \
-SOURCES_PF			=	$(FT_PRINTF)ft_printf.c \
-						$(FT_PRINTF)ft_putchar.c \
-						$(FT_PRINTF)ft_putstr.c \
-						$(FT_PRINTF)ft_putnbr.c \
-						$(FT_PRINTF)ft_putunbr.c \
-						$(FT_PRINTF)ft_puthex.c \
-						$(FT_PRINTF)ft_putptr.c \
+SOURCES_UT			=	$(UTILS)ft_printf.c \
+						$(UTILS)ft_putchar.c \
+						$(UTILS)ft_putstr.c \
+						$(UTILS)ft_putnbr.c \
+						$(UTILS)ft_putunbr.c \
+						$(UTILS)ft_puthex.c \
+						$(UTILS)ft_putptr.c \
 
 OBJECTS_S			=	$(SOURCES_S:%.c=%.o)
 OBJECTS_C			=	$(SOURCES_C:%.c=%.o)
-OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)
+OBJECTS_UT			=	$(SOURCES_UT:%.c=%.o)
 
 INCLUDE				=	minitalk.h
 
@@ -56,26 +56,26 @@ export MINITALK
 
 all: 			$(NAME_S) $(NAME_C)
 
-$(NAME_S):		$(OBJECTS_S) $(OBJECTS_PF) $(INCLUDE)
-				$(CC) $(CC_FLAGS) $(OBJECTS_s) $(OBJECTS_PF) -o $(NAME_S)
+$(NAME_S):		$(OBJECTS_S) $(OBJECTS_UT) $(INCLUDE)
+				$(CC) $(CC_FLAGS) $(OBJECTS_s) $(OBJECTS_UT) -o $(NAME_S)
 				mkdir ./objects/
-				mkdir ./ft_printf/objects/
+				mkdir ./utils/objects/
 				mv $(OBJECTS_S) ./objects/
-				mv $(OBJECTS_PF) ./ft_printf/objects/
+				mv $(OBJECTS_UT) ./utils/objects/
 				echo "\n························· Server compilation complete ·························"
 
-$(NAME_C):		$(OBJECTS_C) $(OBJECTS_PF) $(INCLUDE)
-				$(CC) $(CC_FLAGS) $(OBJECTS_C) $(OBJECTS_PF) -o $(NAME_C)
+$(NAME_C):		$(OBJECTS_C) $(OBJECTS_UT) $(INCLUDE)
+				$(CC) $(CC_FLAGS) $(OBJECTS_C) $(OBJECTS_UT) -o $(NAME_C)
 				mv $(OBJECTS_C) ./objects/
-				mv $(OBJECTS_PF) ./ft_printf/objects/
+				mv $(OBJECTS_UT) ./utils/objects/
 				echo "\n························· Client compilation complete ·························"
 				echo "$$MINITALK"
 
 clean:
 				rm -rf ./objects/
 				rm -rf ./*.o
-				rm -rf ./ft_printf/objects/
-				rm -rf ./ft_printf/*.o
+				rm -rf ./utils/objects/
+				rm -rf ./utils/*.o
 				echo "\n·······························"
 				echo "\n· Objects correctly removed."
 
