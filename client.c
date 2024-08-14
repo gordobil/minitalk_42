@@ -14,7 +14,18 @@
 
 void	ft_atob(int pid, char c)
 {
+	int	bit;
 
+	bit = 0;
+	while (bit < 8)
+	{
+		if (c & (0x01 << bit))
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(100);
+		bit++;
+	}
 }
 
 int	main(int argc, char **argv)

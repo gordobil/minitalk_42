@@ -14,7 +14,18 @@
 
 void	ft_btoa(int sig)
 {
+	static int	bit;
+	static int	i;
 
+	if (sig == SIGUSR1)
+		i |= (0x01 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		ft_printf("%c\n", i);
+		i = 0;
+		bit = 0;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -28,10 +39,12 @@ int	main(int argc, char **argv)
 	}
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
+	ft_printf("\nMESSAGE FROM CLIENT:\n");
 	while (1)
 	{
 		signal(SIGUSR1, ft_btoa);
 		signal(SIGUSR2, ft_btoa);
+		pause();
 	}
 	return (0);
 }
