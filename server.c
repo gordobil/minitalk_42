@@ -40,11 +40,9 @@ int	main(int argc)
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	ft_printf("\nMESSAGE FROM CLIENT\n···················\n");
+	signal(SIGUSR1, ft_btoa);
+	signal(SIGUSR2, ft_btoa);
 	while (1)
-	{
-		signal(SIGUSR1, ft_btoa);
-		signal(SIGUSR2, ft_btoa);
 		pause();
-	}
 	return (0);
 }
