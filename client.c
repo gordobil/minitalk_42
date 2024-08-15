@@ -44,5 +44,6 @@ int	main(int argc, char **argv)
 		ft_atob(pid, argv[2][i]);
 		i++;
 	}
+	ft_atob(pid, '\n');
 	return (0);
 }
