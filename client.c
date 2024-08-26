@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	pid = ft_atoi(argv[1]);
+	i = 0;
 	while (argv[2][i] != '\0')
 	{
 		ft_atob(pid, argv[2][i]);
